@@ -113,36 +113,36 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
-            /* 여백 및 간격 설정 */
-            padding: 10px 0 20px;
-            margin: 0 -10px;
-            /* 스크롤바 숨기기 */
+            /* 좌우 패딩으로 사진 크기 줄이기 */
+            padding: 4px 0 20px;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
 
         .slider-wrapper::-webkit-scrollbar { display: none; }
 
-        /* 사진 한 장씩 꽉 차거나 약간 마진이 보이도록 설정 */
+        /* 슬라이드 전체 너비, 패딩으로 이미지 축소 */
         .slider-slide {
-            flex: 0 0 100%; /* 한 번에 1장씩 보여짐 */
+            flex: 0 0 100%;
             scroll-snap-align: center;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 2px solid #fff;
-            background-color: #fff;
-            padding: 6px;
+            padding: 0 36px; /* 좌우 여백으로 사진 크기 제어 */
             cursor: pointer;
         }
 
-        /* 꽉 채워지는 이미지 혹은 비율 고정 */
+        /* 이미지 래퍼 (border-radius, shadow 적용) */
+        .slider-slide-inner {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+            border: 1px solid var(--border-light);
+        }
+
         .slider-slide img {
             width: 100%;
-            aspect-ratio: 4 / 5; /* 모바일에 최적화된 세로 비율 */
+            aspect-ratio: 4 / 3;
             object-fit: cover;
-            border-radius: 8px;
             display: block;
+            border-radius: 10px; /* 약간 둥근 모서리 */
         }
 
         /* 이전/다음 버튼 */
@@ -294,16 +294,16 @@
                 <button class="slider-btn prev" onclick="scrollSlider(-1)">&#10094;</button>
                 <div class="slider-wrapper" id="slider">
                     <!-- Javascript 배열과 연동되는 그리드 항목들 -->
-                    <div class="slider-slide" onclick="openLightbox(0)"><img src="more/1.jpg" alt="사진1"></div>
-                    <div class="slider-slide" onclick="openLightbox(1)"><img src="more/2.jpg" alt="사진2"></div>
-                    <div class="slider-slide" onclick="openLightbox(2)"><img src="more/3.jpg" alt="사진3"></div>
-                    <div class="slider-slide" onclick="openLightbox(3)"><img src="more/4.jpg" alt="사진4"></div>
-                    <div class="slider-slide" onclick="openLightbox(4)"><img src="more/5.jpg" alt="사진5"></div>
-                    <div class="slider-slide" onclick="openLightbox(5)"><img src="more/6.jpg" alt="사진6"></div>
-                    <div class="slider-slide" onclick="openLightbox(6)"><img src="more/7.jpg" alt="사진7"></div>
-                    <div class="slider-slide" onclick="openLightbox(7)"><img src="more/8.jpg" alt="사진8"></div>
-                    <div class="slider-slide" onclick="openLightbox(8)"><img src="more/9.jpg" alt="사진9"></div>
-                    <div class="slider-slide" onclick="openLightbox(9)"><img src="more/10.jpg" alt="사진10"></div>
+                    <div class="slider-slide" onclick="openLightbox(0)"><div class="slider-slide-inner"><img src="more/1.jpg" alt="사진1"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(1)"><div class="slider-slide-inner"><img src="more/2.jpg" alt="사진2"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(2)"><div class="slider-slide-inner"><img src="more/3.jpg" alt="사진3"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(3)"><div class="slider-slide-inner"><img src="more/4.jpg" alt="사진4"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(4)"><div class="slider-slide-inner"><img src="more/5.jpg" alt="사진5"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(5)"><div class="slider-slide-inner"><img src="more/6.jpg" alt="사진6"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(6)"><div class="slider-slide-inner"><img src="more/7.jpg" alt="사진7"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(7)"><div class="slider-slide-inner"><img src="more/8.jpg" alt="사진8"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(8)"><div class="slider-slide-inner"><img src="more/9.jpg" alt="사진9"></div></div>
+                    <div class="slider-slide" onclick="openLightbox(9)"><div class="slider-slide-inner"><img src="more/10.jpg" alt="사진10"></div></div>
                 </div>
                 <button class="slider-btn next" onclick="scrollSlider(1)">&#10095;</button>
             </div>
@@ -349,6 +349,11 @@
             <div style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <img src="map.jpg" alt="오시는 길 약도" style="width: 100%; display: block; height: auto;">
             </div>
+        </div>
+
+        <!-- 푸터 -->
+        <div style="background: linear-gradient(135deg, #c3a887, #d4bc9e); padding: 14px 20px; text-align: center;">
+            <p style="font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.88); text-transform: uppercase; white-space: nowrap;">Siho &amp; Sieun &nbsp;·&nbsp; First Birthday &nbsp;·&nbsp; May 23, 2026</p>
         </div>
 
     </div>
