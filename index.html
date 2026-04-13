@@ -8,18 +8,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- 고급스러운 무드를 위한 폰트(Cinzel, 고운바탕, 본고딕 명조) 적용 -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;600&family=Pretendard:wght@300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;600&family=Pretendard:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #efece8;
+            --bg-color: #f6f3ef;
             --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-sub: #777777;
-            --accent-gold: #c6a87c;
+            --text-main: #3a3836;
+            --text-sub: #7a7671;
+            --accent-gold: #c3a887;
             --bg-boy: #edf3f8;
             --bg-girl: #fcf1f3;
             --border-light: #e8e1d9;
@@ -33,6 +30,7 @@
 
         body {
             background-color: var(--bg-color);
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e4d5c4' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             font-family: 'Gowun Batang', serif;
             color: var(--text-main);
             display: flex;
@@ -41,329 +39,208 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 모바일 최적화 컨테이너 */
         .invitation-card {
             width: 100%;
             max-width: 430px;
-            background-color: var(--card-bg);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
             position: relative;
             overflow: hidden;
             animation: fadeIn 1.5s ease-in-out;
             padding-bottom: 60px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* --- 상단 헤더 영역 --- */
-        .header {
-            padding: 80px 20px 40px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header::before {
+        .invitation-card::after {
             content: '';
             position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 1px;
-            background-color: var(--accent-gold);
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 1px solid rgba(195, 168, 135, 0.35);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 20;
         }
 
-        .header-subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-            letter-spacing: 5px;
-            margin-bottom: 30px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .header-title {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            line-height: 1.6;
-            color: #222;
+        .deco-blob-1 { position: absolute; top: -80px; left: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(237, 243, 248, 0.7) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; z-index: 0; filter: blur(10px); }
+        .deco-blob-2 { position: absolute; top: 400px; right: -100px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(252, 241, 243, 0.7) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; z-index: 0; filter: blur(15px); }
+        .deco-blob-3 { position: absolute; bottom: 100px; left: -80px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(246, 239, 226, 0.7) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; z-index: 0; filter: blur(15px); }
+
+        .sparkle { position: absolute; color: var(--accent-gold); z-index: 2; opacity: 0.6; animation: twinkle 3s infinite alternate; }
+        .sparkle-1 { top: 80px; right: 40px; font-size: 1.2rem; animation-delay: 0s;}
+        .sparkle-2 { top: 220px; left: 30px; font-size: 1rem; animation-delay: 1s;}
+        .sparkle-3 { top: 580px; right: 20px; font-size: 1.4rem; animation-delay: 0.5s; }
+        .sparkle-4 { bottom: 350px; left: 35px; font-size: 1rem; animation-delay: 1.5s; }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.2); }
         }
 
-        .header-title strong {
-            font-size: 2.3rem;
-            font-weight: 600;
+        .floral-ornament {
+            width: 140px; height: 35px; margin: 0 auto 15px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30'%3E%3Cpath d='M50 25 C30 25, 10 15, 0 0 C10 10, 30 20, 50 20 C70 20, 90 10, 100 0 C90 15, 70 25, 50 25 Z' fill='%23d0bca9'/%3E%3Ccircle cx='50' cy='15' r='2.5' fill='%23c3a887'/%3E%3Ccircle cx='30' cy='12' r='1.5' fill='%23e4d5c4'/%3E%3Ccircle cx='70' cy='12' r='1.5' fill='%23e4d5c4'/%3E%3C/svg%3E");
+            background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.85; position: relative; z-index: 10;
         }
 
-        .header-date {
-            margin-top: 25px;
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-sub);
-            letter-spacing: 1px;
-            font-weight: 300;
-        }
+        .header { padding: 60px 20px 40px; text-align: center; position: relative; z-index: 10; }
+        .header-subtitle { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--accent-gold); letter-spacing: 5px; margin-bottom: 25px; }
+        .header-title { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 500; line-height: 1.6; color: #222; }
+        .header-title strong { font-size: 2.3rem; font-weight: 600; }
+        .header-date { margin-top: 25px; font-family: 'Pretendard', sans-serif; font-size: 0.95rem; color: var(--text-sub); letter-spacing: 1px; font-weight: 300; }
 
-        /* --- 중단 사진(갤러리) 영역 --- */
-        .photos-wrap {
-            padding: 10px 20px 50px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+        .photos-wrap { padding: 10px 20px 50px; display: flex; justify-content: center; gap: 20px; position: relative; z-index: 10; }
+        .photo-item { display: flex; flex-direction: column; align-items: center; }
+        .photo-mask { width: 145px; height: 200px; border-radius: 75px 75px 12px 12px; border: 1px solid var(--accent-gold); padding: 5px; position: relative; background-color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+        .photo-inner { width: 100%; height: 100%; border-radius: 70px 70px 8px 8px; background-color: #f9f9f9; }
+        .photo-name { margin-top: 18px; font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 500; color: #444; letter-spacing: 3px; }
 
-        .photo-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .message { padding: 50px 40px 60px; text-align: center; background-color: rgba(255, 255, 255, 0.6); border-top: 1px solid rgba(195, 168, 135, 0.15); border-bottom: 1px solid rgba(195, 168, 135, 0.15); position: relative; z-index: 10; backdrop-filter: blur(5px); }
+        .sec-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 30px; letter-spacing: 5px; text-transform: uppercase; }
+        .sec-title span { display: block; font-family: 'Gowun Batang', serif; font-size: 1.1rem; margin-top: 8px; letter-spacing: 2px; color: #333; }
+        .message-text { line-height: 2.4; font-size: 1.05rem; color: #444; margin-bottom: 45px; word-break: keep-all; }
+        .parents { font-family: 'Noto Serif KR', serif; font-size: 1.1rem; color: #222; }
+        .parents span { font-family: 'Pretendard', sans-serif; font-size: 0.9rem; color: var(--text-sub); margin-right: 8px; }
+        .parents strong { font-weight: 500; font-size: 1.25rem; margin-right: 15px; }
+        .parents strong:last-child { margin-right: 0; }
+        .parents .dot { color: var(--accent-gold); margin: 0 15px; font-size: 0.8rem; }
 
-        /* 최근 트렌드인 아치형 프레임 적용 */
-        .photo-mask {
-            width: 145px;
-            height: 200px;
-            border-radius: 75px 75px 12px 12px;
-            border: 1px solid var(--accent-gold);
-            padding: 5px;
+        /* --- 갤러리 슬라이드 UI --- */
+        .gallery-sec { padding: 60px 20px 40px; text-align: center; position: relative; z-index: 10; }
+        
+        .slider-container {
             position: relative;
-            background-color: #fff;
+            width: 100%;
+            margin: 35px auto 10px;
         }
 
-        .photo-inner {
-            width: 100%;
-            height: 100%;
-            border-radius: 70px 70px 8px 8px;
+        .slider-wrapper {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-sub);
-            text-align: center;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            /* 여백 및 간격 설정 */
+            padding: 10px 0 20px;
+            margin: 0 -10px;
+            /* 스크롤바 숨기기 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        /* 남매 구분을 위한 은은한 배경색 */
-        .bg-boy {
-            background-color: var(--bg-boy);
-        }
+        .slider-wrapper::-webkit-scrollbar { display: none; }
 
-        .bg-girl {
-            background-color: var(--bg-girl);
-        }
-
-        .photo-inner span.icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            opacity: 0.8;
-        }
-
-        .photo-inner span.text {
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-        }
-
-        .photo-name {
-            margin-top: 18px;
-            font-family: 'Noto Serif KR', serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: #444;
-            letter-spacing: 3px;
-        }
-
-        /* --- 초대 문구 영역 --- */
-        .message {
-            padding: 40px 40px 60px;
-            text-align: center;
-            background-color: #faf9f7;
-            border-top: 1px solid rgba(0, 0, 0, 0.03);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        .sec-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            color: var(--accent-gold);
-            margin-bottom: 30px;
-            letter-spacing: 4px;
-        }
-
-        .sec-title span {
-            display: block;
-            font-family: 'Gowun Batang', serif;
-            font-size: 1.1rem;
-            margin-top: 8px;
-            letter-spacing: 1px;
-            color: #333;
-        }
-
-        .message-text {
-            line-height: 2.3;
-            font-size: 1.05rem;
-            color: #444;
-            margin-bottom: 45px;
-            word-break: keep-all;
-        }
-
-        .parents {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 1.1rem;
-            color: #222;
-        }
-
-        .parents span {
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            margin-right: 8px;
-        }
-
-        .parents strong {
-            font-weight: 500;
-            font-size: 1.25rem;
-            margin-right: 15px;
-        }
-
-        .parents strong:last-child {
-            margin-right: 0;
-        }
-
-        .parents .dot {
-            color: var(--accent-gold);
-            margin: 0 15px;
-            font-size: 0.8rem;
-        }
-
-        /* --- 일시 및 달력 영역 --- */
-        .info-sec {
-            padding: 60px 30px 50px;
-            text-align: center;
-        }
-
-        .info-highlight {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: #222;
-            margin-bottom: 40px;
-        }
-
-        /* 고급스러운 달력 UI */
-        .calendar-wrap {
-            margin: 0 auto;
-            width: 260px;
-        }
-
-        .calendar-wrap .month {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            margin-bottom: 25px;
-            letter-spacing: 3px;
-            color: var(--accent-gold);
-        }
-
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        .calendar th {
-            padding: 10px 0;
-            color: var(--text-sub);
-            font-weight: 400;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .calendar th.sun {
-            color: #e57373;
-        }
-
-        .calendar td {
-            padding: 14px 0;
-            color: #444;
-            text-align: center;
-        }
-
-        .calendar td.sun {
-            color: #e57373;
-        }
-
-        .calendar td .d-day {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background-color: var(--accent-gold);
-            color: #fff;
-            border-radius: 50%;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(198, 168, 124, 0.4);
-        }
-
-        /* --- 오시는 길 영역 --- */
-        .location {
-            padding: 0 30px 40px;
-            text-align: center;
-        }
-
-        .loc-name {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #222;
-        }
-
-        .loc-addr {
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-sub);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .map-placeholder {
-            width: 100%;
-            height: 220px;
-            background-color: #fcfcfc;
+        /* 사진 한 장씩 꽉 차거나 약간 마진이 보이도록 설정 */
+        .slider-slide {
+            flex: 0 0 100%; /* 한 번에 1장씩 보여짐 */
+            scroll-snap-align: center;
             border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-light);
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 2px solid #fff;
+            background-color: #fff;
+            padding: 6px;
+            cursor: pointer;
         }
 
-        .map-placeholder svg {
-            width: 30px;
-            height: 30px;
-            margin-bottom: 10px;
-            fill: #ccc;
+        /* 꽉 채워지는 이미지 혹은 비율 고정 */
+        .slider-slide img {
+            width: 100%;
+            aspect-ratio: 4 / 5; /* 모바일에 최적화된 세로 비율 */
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
         }
+
+        /* 이전/다음 버튼 */
+        .slider-btn {
+            position: absolute;
+            top: 45%; 
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(195,168,135,0.3);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+        .slider-btn.prev { left: 0px; }
+        .slider-btn.next { right: 0px; }
+
+        /* 화면 하단 인디케이터(점) */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 5px;
+        }
+
+        .slider-dots .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(195, 168, 135, 0.4);
+            transition: 0.3s;
+        }
+
+        .slider-dots .dot.active {
+            background: var(--accent-gold);
+            width: 18px;
+            border-radius: 6px;
+        }
+
+        /* --- 일시 및 장소 --- */
+        .info-sec { padding: 40px 30px 50px; text-align: center; position: relative; z-index: 10; }
+        .info-highlight { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 500; color: #222; margin-bottom: 40px; }
+        
+        .calendar-wrap { margin: 0 auto; width: 260px; background: rgba(255,255,255,0.7); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(195, 168, 135, 0.15); }
+        .calendar-wrap .month { font-family: 'Cinzel', serif; font-size: 1.15rem; margin-bottom: 25px; letter-spacing: 3px; color: var(--accent-gold); }
+        .calendar { width: 100%; border-collapse: collapse; font-family: 'Pretendard', sans-serif; font-size: 0.9rem; }
+        .calendar th { padding: 10px 0; color: var(--text-sub); font-weight: 400; border-bottom: 1px solid var(--border-light); }
+        .calendar th.sun { color: #e57373; }
+        .calendar td { padding: 14px 0; color: #444; text-align: center; }
+        .calendar td.sun { color: #e57373; }
+        .calendar td .d-day { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background-color: var(--accent-gold); color: #fff; border-radius: 50%; font-weight: 600; box-shadow: 0 4px 10px rgba(198, 168, 124, 0.4); }
+
+        .location { padding: 0 30px 40px; text-align: center; position: relative; z-index: 10; }
+        .loc-name { font-family: 'Noto Serif KR', serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 12px; color: #222; }
+        .loc-addr { font-family: 'Pretendard', sans-serif; font-size: 0.95rem; color: var(--text-sub); margin-bottom: 30px; line-height: 1.6; }
+
+        /* 모달 라이트박스 */
+        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(5px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s ease; }
+        .lightbox.active img { transform: scale(1); }
+        .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 2.5rem; font-weight: 300; cursor: pointer; z-index: 10000; }
+        .lightbox-controls { position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; top: 50%; transform: translateY(-50%); z-index: 10000; }
+        .lightbox-controls span { color: #fff; font-size: 2.5rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+        .lightbox-controls span:hover { opacity: 1; }
     </style>
 </head>
 
 <body>
 
     <div class="invitation-card">
+        
+        <!-- --- 장식 --- -->
+        <div class="deco-blob-1"></div>
+        <div class="deco-blob-2"></div>
+        <div class="deco-blob-3"></div>
 
-        <!-- 상단 타이틀 영역 -->
+        <div class="sparkle sparkle-1">✨</div>
+        <div class="sparkle sparkle-2">✨</div>
+        <div class="sparkle sparkle-3">✨</div>
+        <div class="sparkle sparkle-4">✨</div>
+
+        <!-- 상단 타이틀 -->
         <div class="header">
+            <div class="floral-ornament"></div>
             <div class="header-subtitle">1ST BIRTHDAY</div>
             <div class="header-title">
                 <strong>양시호 & 양시은</strong><br>
@@ -372,30 +249,24 @@
             <div class="header-date">2026. 05. 23. SAT 11:30 AM</div>
         </div>
 
-        <!-- 사진 영역: 중단 배치 및 아이별 개별 액자 -->
+        <!-- 사진 -->
         <div class="photos-wrap">
-            <!-- 첫째 (남아) 사진 프레임 -->
             <div class="photo-item">
                 <div class="photo-mask">
-                    <div class="photo-inner"
-                        style="background-image: url('siho.jpg'); background-size: cover; background-position: center;">
-                    </div>
+                    <div class="photo-inner" style="background-image: url('siho.jpg'); background-size: cover; background-position: center; background-color: var(--bg-boy);"></div>
                 </div>
                 <div class="photo-name">시호</div>
             </div>
 
-            <!-- 둘째 (여아) 사진 프레임 -->
             <div class="photo-item">
                 <div class="photo-mask">
-                    <div class="photo-inner"
-                        style="background-image: url('sieun.jpg'); background-size: cover; background-position: center;">
-                    </div>
+                    <div class="photo-inner" style="background-image: url('sieun.jpg'); background-size: cover; background-position: center; background-color: var(--bg-girl);"></div>
                 </div>
                 <div class="photo-name">시은</div>
             </div>
         </div>
 
-        <!-- 초대 문구 영역 -->
+        <!-- 초대 말씀 -->
         <div class="message">
             <div class="sec-title">
                 INVITATION
@@ -424,109 +295,163 @@
             </div>
         </div>
 
+        <!-- 추가 갤러리 영역 (슬라이드 형태) -->
+        <div class="gallery-sec">
+            <div class="sec-title">
+                GALLERY
+                <span>우리아이 사진첩</span>
+            </div>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev" onclick="scrollSlider(-1)">&#10094;</button>
+                <div class="slider-wrapper" id="slider">
+                    <!-- Javascript 배열과 연동되는 그리드 항목들 -->
+                    <div class="slider-slide" onclick="openLightbox(0)"><img src="more/1.jpg" alt="사진1"></div>
+                    <div class="slider-slide" onclick="openLightbox(1)"><img src="more/2.jpg" alt="사진2"></div>
+                    <div class="slider-slide" onclick="openLightbox(2)"><img src="more/3.jpg" alt="사진3"></div>
+                    <div class="slider-slide" onclick="openLightbox(3)"><img src="more/4.jpg" alt="사진4"></div>
+                    <div class="slider-slide" onclick="openLightbox(4)"><img src="more/5.jpg" alt="사진5"></div>
+                    <div class="slider-slide" onclick="openLightbox(5)"><img src="more/6.jpg" alt="사진6"></div>
+                    <div class="slider-slide" onclick="openLightbox(6)"><img src="more/7.jpg" alt="사진7"></div>
+                    <div class="slider-slide" onclick="openLightbox(7)"><img src="more/8.jpg" alt="사진8"></div>
+                    <div class="slider-slide" onclick="openLightbox(8)"><img src="more/9.jpg" alt="사진9"></div>
+                    <div class="slider-slide" onclick="openLightbox(9)"><img src="more/10.jpg" alt="사진10"></div>
+                </div>
+                <button class="slider-btn next" onclick="scrollSlider(1)">&#10095;</button>
+            </div>
+            
+            <!-- 슬라이드 인디케이터 (점) -->
+            <div class="slider-dots" id="sliderDots">
+                <!-- Javascript를 통해 생성됨 -->
+            </div>
+        </div>
+
         <!-- 일시 및 달력 영역 -->
         <div class="info-sec">
             <div class="sec-title">
                 DATE
                 <span>일시</span>
             </div>
-
-            <div class="info-highlight">
-                2026년 5월 23일 토요일 오전 11시 30분
-            </div>
-
-            <!-- 고급 달력 UI 디자인 -->
+            <div class="info-highlight">2026년 5월 23일 토요일 오전 11시 30분</div>
             <div class="calendar-wrap">
                 <div class="month">MAY 2026</div>
                 <table class="calendar">
-                    <tr>
-                        <th class="sun">S</th>
-                        <th>M</th>
-                        <th>T</th>
-                        <th>W</th>
-                        <th>T</th>
-                        <th>F</th>
-                        <th>S</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td class="sun">3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td class="sun">10</td>
-                        <td>11</td>
-                        <td>12</td>
-                        <td>13</td>
-                        <td>14</td>
-                        <td>15</td>
-                        <td>16</td>
-                    </tr>
-                    <tr>
-                        <td class="sun">17</td>
-                        <td>18</td>
-                        <td>19</td>
-                        <td>20</td>
-                        <td>21</td>
-                        <td>22</td>
-                        <td><span class="d-day">23</span></td>
-                    </tr>
-                    <tr>
-                        <td class="sun">24</td>
-                        <td>25</td>
-                        <td>26</td>
-                        <td>27</td>
-                        <td>28</td>
-                        <td>29</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td class="sun">31</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tr><th class="sun">S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                    <tr><td class="sun">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                    <tr><td class="sun">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                    <tr><td class="sun">17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td><span class="d-day">23</span></td></tr>
+                    <tr><td class="sun">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+                    <tr><td class="sun">31</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 </table>
             </div>
         </div>
 
-        <!-- 오시는 길 (장소) 영역 -->
+        <!-- 오시는 길 -->
         <div class="location">
             <div class="sec-title">
                 LOCATION
                 <span>오시는 길</span>
             </div>
-
             <div class="loc-name">Myus(마이어스)</div>
             <div class="loc-addr">
                 경기도 수원시 권선구 경수대로 270<br>
                 터미널동 2층~4층
             </div>
-
-            <div
-                style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); margin-bottom: 25px;">
+            <div style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <img src="map.jpg" alt="오시는 길 약도" style="width: 100%; display: block; height: auto;">
             </div>
         </div>
 
     </div>
 
-</body>
+    <!-- 갤러리 라이트박스 -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-controls">
+            <span onclick="changeImage(-1)">&#10094;</span>
+            <span onclick="changeImage(1)">&#10095;</span>
+        </div>
+        <img id="lightbox-img" src="" alt="확대사진">
+    </div>
 
+    <script>
+        // -- 슬라이더 로직 -- //
+        const slider = document.getElementById('slider');
+        const dotsContainer = document.getElementById('sliderDots');
+        const totalSlides = 10;
+        
+        // 도트 인디케이터 생성
+        for(let i=0; i<totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => scrollToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+        
+        const dots = document.querySelectorAll('.slider-dots .dot');
+
+        // 버튼 클릭 시 스크롤
+        function scrollSlider(dir) {
+            const slideWidth = slider.querySelector('.slider-slide').offsetWidth + 10; // gap 포함
+            slider.scrollBy({ left: slideWidth * dir, behavior: 'smooth' });
+        }
+
+        // 인디케이터 클릭 시 특정 슬라이드로 이동
+        function scrollToSlide(index) {
+            const slideWidth = slider.querySelector('.slider-slide').offsetWidth + 10;
+            slider.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+        }
+
+        // 스크롤 시 도트 업데이트 
+        slider.addEventListener('scroll', () => {
+            const slideWidth = slider.querySelector('.slider-slide').offsetWidth;
+            // 현재 스크롤 위치를 너비로 나누어 현재 슬라이드 인덱스 계산
+            const scrollIndex = Math.round(slider.scrollLeft / slideWidth);
+            
+            dots.forEach((dot, index) => {
+                if(index === scrollIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+
+        // -- 라이트박스 로직 -- //
+        const images = [
+            "more/1.jpg", "more/2.jpg", "more/3.jpg", "more/4.jpg", "more/5.jpg", 
+            "more/6.jpg", "more/7.jpg", "more/8.jpg", "more/9.jpg", "more/10.jpg"
+        ];
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById("lightbox-img").src = images[currentIndex];
+            document.getElementById("lightbox").classList.add("active");
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").classList.remove("active");
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            document.getElementById("lightbox-img").src = images[currentIndex];
+        }
+
+        // 바탕 클릭 시 닫기
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target !== document.getElementById('lightbox-img') && 
+                e.target.tagName !== 'SPAN') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
 </html>
